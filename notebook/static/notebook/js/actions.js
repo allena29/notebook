@@ -106,6 +106,12 @@ define(function(require){
                 env.notebook.restart_clear_output();
             }
         },
+	'restart-kernel-clear-execute': {
+	    help: 'restart the kernel, clean output and execute until current cell (no confirmation dialog)',
+	    handler: function (env) {
+		env.notebook.restart_clear_execute_curstep({confirm: false});
+	    }
+	},
         'interrupt-kernel':{
             icon: 'fa-stop',
             help_index : 'ha',

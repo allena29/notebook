@@ -2134,6 +2134,47 @@ import {ShortcutEditor} from 'notebook/js/shortcuteditor';
     };
 
     /**
+     * restart the kernel, clear ouput and re-run until (and including) the
+     * current step.
+     * if options.confirm === false, no confirmation dialog is shown.
+     */
+    Notebook.prototype.restart_clear_execute_curstep = function (options) {
+        var that = this;
+	// find selected cell	     
+	var indices = this.get_selected_cells_indices();
+	var cell_index;
+	if (indices.length > 1) {
+	    this.execute_cells(indices);
+	    cell_index = Math.max.apply(Math, indices);
+	}else{
+	    var cell = this.get_selected_cell();
+	    cell_index = this.find_cell_index(cell);
+
+        }
+        cell_index = cell_index + 1;  
+        var restart_options = {};
+        restart_options.confirm = (options || {}).confirm;
+        restart_options.dialog = {
+            notebook: that,
+            keyboard_manager: that.keyboard_manager,
+            title : "Restart kernel, clear and re-run?",
+            body : $("<p/>").text(
+                'Are you sure you want to restart the current kernel, clear the output and re-execute the notebook until the current step?  All variables and outputs will be lost.'
+            ),
+            buttons : {
+                "Restart, Clear and Re-Run" : {
+                    "class" : "btn-danger",
+                    "click" : function () {
+			that.clear_all_output();
+                        that.execute_cell_range(0,cell_index);
+                    },
+                },
+            }
+        };
+        return this._restart_kernel(restart_options);
+    };
+
+    /**
      * Prompt the user to restart the kernel and clear output.
      * if options.confirm === false, no confirmation dialog is shown.
      */

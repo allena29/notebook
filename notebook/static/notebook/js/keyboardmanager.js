@@ -133,6 +133,7 @@ define([
             'down' : 'jupyter-notebook:select-next-cell',
             'i,i' : 'jupyter-notebook:interrupt-kernel',
             '0,0' : 'jupyter-notebook:confirm-restart-kernel',
+            '9,9' : 'jupyter-notebook:restart-kernel-clear-execute',
             'd,d' : 'jupyter-notebook:delete-cell',
             'esc': 'jupyter-notebook:close-pager',
             'up' : 'jupyter-notebook:select-previous-cell',
