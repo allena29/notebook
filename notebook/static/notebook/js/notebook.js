@@ -2125,6 +2125,7 @@ import {ShortcutEditor} from 'notebook/js/shortcuteditor';
                 "Restart and Run All Cells" : {
                     "class" : "btn-danger",
                     "click" : function () {
+			that.clear_all_output();
                         that.execute_all_cells();
                     },
                 },

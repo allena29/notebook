@@ -83,13 +83,14 @@ define(function(require){
             }
         },
         'restart-kernel-and-run-all-cells': {
-            help: 'restart the kernel, then re-run the whole notebook (no confirmation dialog)',
+            help: 'restart the kernel, clear output, then re-run the whole notebook (no confirmation dialog)',
+            icon: 'fa-fast-forward',
             handler: function (env) {
                 env.notebook.restart_run_all({confirm: false});
             }
         },
         'confirm-restart-kernel-and-run-all-cells': {
-            help: 'restart the kernel, then re-run the whole notebook (with dialog)',
+            help: 'restart the kernel, clear output, then re-run the whole notebook (with dialog)',
             handler: function (env) {
                 env.notebook.restart_run_all();
             }
@@ -108,6 +109,7 @@ define(function(require){
         },
 	'restart-kernel-clear-execute': {
 	    help: 'restart the kernel, clean output and execute until current cell (no confirmation dialog)',
+            icon: 'fa-play',
 	    handler: function (env) {
 		env.notebook.restart_clear_execute_curstep({confirm: false});
 	    }
