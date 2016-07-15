@@ -49,6 +49,7 @@ define([
             ],
             'move_up_down'],
           [ ['jupyter-notebook:restart-kernel-clear-execute',
+	     'jupyter-notebook:external-helper-rebuild-module'
             ],
             'run_int'],
          ['<add_celltype_list>'],

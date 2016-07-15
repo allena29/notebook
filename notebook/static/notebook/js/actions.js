@@ -74,6 +74,13 @@ define(function(require){
                 env.notebook.restart_kernel({confirm: false});
             },
         },
+	'external-helper-rebuild-module': {
+	    help: 'rebuild the module',
+	    icon: 'fa-cogs',
+	    handler : function (env) {
+	          parent.jupyterParentRebuildCode();
+	      }
+	},
         'confirm-restart-kernel':{
             icon: 'fa-repeat',
             help_index : 'hb',

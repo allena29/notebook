@@ -102,6 +102,7 @@ define([
     KeyboardManager.prototype.get_default_common_shortcuts = function() {
         return {
             'shift'       : 'jupyter-notebook:ignore',
+	    'ctrl+y'	  : 'jupyter-notebook:external-helper-rebuild-module',
             'shift-enter' : 'jupyter-notebook:run-cell-and-select-next',	
 	    // we've change this to clear output, restart kernel and execute to the current step 
             'ctrl-enter'  : 'jupyter-notebook:restart-kernel-clear-exectute',
