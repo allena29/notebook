@@ -193,6 +193,7 @@ define([
              
         var id_actions_dict = {
             '#trust_notebook' : 'trust-notebook',
+	    '#restart_clear_run' : 'restart-kernel-clear-execute',
             '#rename_notebook' : 'rename-notebook',
             '#find_and_replace' : 'find-and-replace',
             '#save_checkpoint': 'save-notebook',
@@ -377,43 +378,7 @@ define([
     };
 
     MenuBar.prototype.add_kernel_help_links = function(help_links) {
-        /** add links from kernel_info to the help menu */
-        var divider = $("#kernel-help-links");
-        if (divider.length === 0) {
-            // insert kernel help section above about link
-            var about = $("#notebook_about").parent();
-            divider = $("<li>")
-                .attr('id', "kernel-help-links")
-                .addClass('divider');
-            about.prev().before(divider);
-        }
-        // remove previous entries
-        while (!divider.next().hasClass('divider')) {
-            divider.next().remove();
-        }
-        if (help_links.length === 0) {
-            // no help links, remove the divider
-            divider.remove();
-            return;
-        }
-        var cursor = divider;
-        help_links.map(function (link) {
-            cursor.after($("<li>")
-                .append($("<a>")
-                    .attr('target', '_blank')
-                    .attr('title', 'Opens in a new window')
-                    .attr('href', requirejs.toUrl(link.url))
-                    .append($("<i>")
-                        .addClass("fa fa-external-link menu-icon pull-right")
-                    )
-                    .append($("<span>")
-                        .text(link.text)
-                    )
-                )
-            );
-            cursor = cursor.next();
-        });
-        
+	// we have remove the help links
     };
 
     return {'MenuBar': MenuBar};

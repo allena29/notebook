@@ -2168,6 +2168,9 @@ import {ShortcutEditor} from 'notebook/js/shortcuteditor';
                     "click" : function () {
 			that.clear_all_output();
                         that.execute_cell_range(0,cell_index);
+			that.command_mode();
+			that.select(cell_index+1);
+			that.focus_cell();
                     },
                 },
             }

@@ -48,14 +48,11 @@ define([
              'jupyter-notebook:move-cell-down'
             ],
             'move_up_down'],
-          [ ['jupyter-notebook:run-cell-and-select-next',
-             'jupyter-notebook:interrupt-kernel',
-             'jupyter-notebook:confirm-restart-kernel'
+          [ ['jupyter-notebook:restart-kernel-clear-execute',
             ],
             'run_int'],
          ['<add_celltype_list>'],
-         [['jupyter-notebook:show-command-palette']],
-         ['<add_celltoolbar_reminder>']
+	// clean up less useful items from the toolbar
         ];
         this.construct(grps);
     };
@@ -94,8 +91,8 @@ define([
             .addClass('form-control select-xs')
             .append($('<option/>').attr('value','code').text('Code'))
             .append($('<option/>').attr('value','markdown').text('Markdown'))
-            .append($('<option/>').attr('value','raw').text('Raw NBConvert'))
-            .append($('<option/>').attr('value','heading').text('Heading'))
+//            .append($('<option/>').attr('value','raw').text('Raw NBConvert'))
+//            .append($('<option/>').attr('value','heading').text('Heading'))
             .append(multiselect);
         this.notebook.keyboard_manager.register_events(sel);
         this.events.on('selected_cell_type_changed.Notebook', function (event, data) {

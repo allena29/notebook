@@ -102,8 +102,9 @@ define([
     KeyboardManager.prototype.get_default_common_shortcuts = function() {
         return {
             'shift'       : 'jupyter-notebook:ignore',
-            'shift-enter' : 'jupyter-notebook:run-cell-and-select-next',
-            'ctrl-enter'  : 'jupyter-notebook:run-cell',
+            'shift-enter' : 'jupyter-notebook:run-cell-and-select-next',	
+	    // we've change this to clear output, restart kernel and execute to the current step 
+            'ctrl-enter'  : 'jupyter-notebook:restart-kernel-clear-exectute',
             'alt-enter'   : 'jupyter-notebook:run-cell-and-insert-below',
             // cmd on mac, ctrl otherwise
             'cmdtrl-s'    : 'jupyter-notebook:save-notebook'
@@ -151,7 +152,7 @@ define([
             'b' : 'jupyter-notebook:insert-cell-below',
             'y' : 'jupyter-notebook:change-cell-to-code',
             'm' : 'jupyter-notebook:change-cell-to-markdown',
-            'r' : 'jupyter-notebook:change-cell-to-raw',
+           // don't want people to edit raw notebook json'r' : 'jupyter-notebook:change-cell-to-raw',
             '1' : 'jupyter-notebook:change-cell-to-heading-1',
             '2' : 'jupyter-notebook:change-cell-to-heading-2',
             '3' : 'jupyter-notebook:change-cell-to-heading-3',

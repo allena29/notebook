@@ -43,9 +43,11 @@ data-notebook-path="{{notebook_path | urlencode}}"
 </span>
 
 <span id="kernel_logo_widget">
+ <span style='display: none'>
   {% block kernel_logo_widget %}
   <img class="current_kernel_logo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
   {% endblock %}
+ </span>
 </span>
 
 {% endblock headercontainer %}
@@ -56,11 +58,12 @@ data-notebook-path="{{notebook_path | urlencode}}"
     <div id="menus" class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <button type="button" class="btn btn-default navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <i class="fa fa-bars"></i>
               <span class="navbar-text">Menu</span>
             </button>
             <p id="kernel_indicator" class="navbar-text indicator_area">
+	     <span style="display:none">
               <span class="kernel_indicator_name">Kernel</span>
+             </span>
               <i id="kernel_indicator_icon"></i>
             </p>
             <i id="readonly-indicator" class="navbar-text" title='This notebook is read-only'>
@@ -75,19 +78,6 @@ data-notebook-path="{{notebook_path | urlencode}}"
               <ul class="nav navbar-nav">
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">File</a>
                     <ul id="file_menu" class="dropdown-menu">
-                        <li id="new_notebook" class="dropdown-submenu">
-                            <a href="#">New Notebook</a>
-                            <ul class="dropdown-menu" id="menu-new-notebook-submenu"></ul>
-                        </li>
-                        <li id="open_notebook"
-                            title="Opens a new window with the Dashboard view">
-                            <a href="#">Open...</a></li>
-                        <!-- <hr/> -->
-                        <li class="divider"></li>
-                        <li id="copy_notebook"
-                            title="Open a copy of this notebook's contents and start a new kernel">
-                            <a href="#">Make a Copy...</a></li>
-                        <li id="rename_notebook"><a href="#">Rename...</a></li>
                         <li id="save_checkpoint"><a href="#">Save and Checkpoint</a></li>
                         <!-- <hr/> -->
                         <li class="divider"></li>
@@ -105,21 +95,18 @@ data-notebook-path="{{notebook_path | urlencode}}"
                         <li class="dropdown-submenu"><a href="#">Download as</a>
                             <ul class="dropdown-menu">
                                 <li id="download_ipynb"><a href="#">Notebook (.ipynb)</a></li>
-                                <li id="download_script"><a href="#">Script</a></li>
-                                <li id="download_html"><a href="#">HTML (.html)</a></li>
-                                <li id="download_markdown"><a href="#">Markdown (.md)</a></li>
-                                <li id="download_rst"><a href="#">reST (.rst)</a></li>
-                                <li id="download_pdf"><a href="#">PDF via LaTeX (.pdf)</a></li>
+                                <li id="download_pdf"><a href="#">PDF (.pdf)</a></li>
                             </ul>
                         </li>
                         <li class="divider"></li>
-                        <li id="trust_notebook"
-                            title="Trust the output of this notebook">
-                            <a href="#" >Trust Notebook</a></li>
-                        <li class="divider"></li>
+	<!--
+	    // as we are putting these in iframes exit is something that our parent 
+	    // would need to deal with.
                         <li id="kill_and_exit"
                             title="Shutdown this notebook's kernel, and close this window">
                             <a href="#" >Close and Halt</a></li>
+
+	-->
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit</a>
@@ -142,10 +129,6 @@ data-notebook-path="{{notebook_path | urlencode}}"
                         <li id="edit_nb_metadata"><a href="#">Edit Notebook Metadata</a></li>
                         <li class="divider"></li>
                         <li id="find_and_replace"><a href="#"> Find and Replace </a></li>
-                        <li class="divider"></li>
-                        <li id="cut_cell_attachments"><a href="#">Cut Cell Attachments</a></li>
-                        <li id="copy_cell_attachments"><a href="#">Copy Cell Attachments</a></li>
-                        <li id="paste_cell_attachments" class="disabled"><a href="#">Paste Cell Attachments</a></li>
                         <li class="divider"></li>
                         <li id="insert_image" class="disabled"><a href="#"> Insert Image </a></li>
                     </ul>
@@ -199,9 +182,6 @@ data-notebook-path="{{notebook_path | urlencode}}"
                               <li id="to_markdown"
                                   title="Contents will be rendered as HTML and serve as explanatory text">
                                   <a href="#">Markdown</a></li>
-                              <li id="to_raw"
-                                  title="Contents will pass through nbconvert unmodified">
-                                  <a href="#">Raw NBConvert</a></li>
                             </ul>
                         </li>
                         <li class="divider"></li>
@@ -239,36 +219,20 @@ data-notebook-path="{{notebook_path | urlencode}}"
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Kernel</a>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Executor</a>
                     <ul id="kernel_menu" class="dropdown-menu">
-                        <li id="int_kernel"
-                            title="Send KeyboardInterrupt (CTRL-C) to the Kernel">
-                            <a href="#">Interrupt</a>
-                        </li>
-                        <li id="restart_kernel"
-                            title="Restart the Kernel">
-                            <a href="#">Restart</a>
+                        <li id="restart_clear_run"
+                            title="Restart the Executor, Clear and Execute">
+                            <a href="#">Restart &amp; Execute</a>
                         </li>
                         <li id="restart_clear_output"
-                            title="Restart the Kernel and clear all output">
+                            title="Restart the executor and clear all output">
                             <a href="#">Restart &amp; Clear Output</a>
-                        </li>
-                        <li id="restart_run_all"
-                            title="Restart the Kernel and re-run the notebook">
-                            <a href="#">Restart &amp; Run All</a>
-                        </li>
-                        <li id="reconnect_kernel"
-                            title="Reconnect to the Kernel">
-                            <a href="#">Reconnect</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li id="menu-change-kernel" class="dropdown-submenu">
-                            <a href="#">Change kernel</a>
-                            <ul class="dropdown-menu" id="menu-change-kernel-submenu"></ul>
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Help</a>
+	    <!-- help will be dealt with externally -->
+                <li class="dropdown" style="display: none"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Help</a>
                     <ul  id="help_menu" class="dropdown-menu">
                         {% block help %}
                         <li id="notebook_tour" title="A quick tour of the notebook user interface"><a href="#">User Interface Tour</a></li>
