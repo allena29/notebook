@@ -69,7 +69,7 @@ define(function(require){
             }
         },
         'restart-kernel': {
-            help: 'restart the kernel (no confirmation dialog)',
+            help: 'restart the executor (no confirmation dialog)',
             handler: function (env) {
                 env.notebook.restart_kernel({confirm: false});
             },
@@ -77,38 +77,38 @@ define(function(require){
         'confirm-restart-kernel':{
             icon: 'fa-repeat',
             help_index : 'hb',
-            help: 'restart the kernel (with dialog)',
+            help: 'restart the executor (with dialog)',
             handler : function (env) {
                 env.notebook.restart_kernel();
             }
         },
         'restart-kernel-and-run-all-cells': {
-            help: 'restart the kernel, clear output, then re-run the whole notebook (no confirmation dialog)',
+            help: 'restart the executor, clear output, then re-run the whole notebook (no confirmation dialog)',
             icon: 'fa-fast-forward',
             handler: function (env) {
                 env.notebook.restart_run_all({confirm: false});
             }
         },
         'confirm-restart-kernel-and-run-all-cells': {
-            help: 'restart the kernel, clear output, then re-run the whole notebook (with dialog)',
+            help: 'restart the executor, clear output, then re-run the whole notebook (with dialog)',
             handler: function (env) {
                 env.notebook.restart_run_all();
             }
         },
         'restart-kernel-and-clear-output': {
-            help: 'restart the kernel and clear all output (no confirmation dialog)',
+            help: 'restart the executor and clear all output (no confirmation dialog)',
             handler: function (env) {
                 env.notebook.restart_clear_output({confirm: false});
             }
         },
         'confirm-restart-kernel-and-clear-output': {
-            help: 'restart the kernel and clear all output (with dialog)',
+            help: 'restart the executor and clear all output (with dialog)',
             handler: function (env) {
                 env.notebook.restart_clear_output();
             }
         },
 	'restart-kernel-clear-execute': {
-	    help: 'restart the kernel, clean output and execute until current cell (no confirmation dialog)',
+	    help: 'restart the executor, clean output and execute until current cell (no confirmation dialog)',
             icon: 'fa-play',
 	    handler: function (env) {
 		env.notebook.restart_clear_execute_curstep({confirm: false});
