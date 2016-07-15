@@ -2289,7 +2289,9 @@ import {ShortcutEditor} from 'notebook/js/shortcuteditor';
 
         this.select(indices[indices.length - 1]);
         this.command_mode();
-        this.set_dirty(true);
+// we aren't interested in saving execution state because we are recycling the pages 
+// through revision control
+//        this.set_dirty(true);
     };
 
     /**
@@ -2333,7 +2335,7 @@ import {ShortcutEditor} from 'notebook/js/shortcuteditor';
             this.select(cell_index+1);
             this.edit_mode();
             this.scroll_to_bottom();
-            this.set_dirty(true);
+//            this.set_dirty(true);
             return;
         }
 
@@ -2341,7 +2343,7 @@ import {ShortcutEditor} from 'notebook/js/shortcuteditor';
         this.insert_cell_below();
         this.select(cell_index+1);
         this.edit_mode();
-        this.set_dirty(true);
+//        this.set_dirty(true);
     };
 
     /**
@@ -2366,14 +2368,14 @@ import {ShortcutEditor} from 'notebook/js/shortcuteditor';
             this.select(cell_index+1);
             this.edit_mode();
             this.scroll_to_bottom();
-            this.set_dirty(true);
+//            this.set_dirty(true);
             return;
         }
 
         this.command_mode();
         this.select(cell_index+1);
         this.focus_cell();
-        this.set_dirty(true);
+//        this.set_dirty(true);
     };
 
     /**
